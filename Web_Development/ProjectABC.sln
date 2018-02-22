@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{9CF26216-0CD8-41D2-A244-2BCF5046BF1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Git_Info_Accessor", "Git_Info_Accessor\Git_Info_Accessor.csproj", "{A2A199BF-58AB-40DD-8476-F283ABF1610B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectABC", "Git_Info_Accessor\ProjectABC.csproj", "{A2A199BF-58AB-40DD-8476-F283ABF1610B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Github_Api", "Github_Api\Github_Api.csproj", "{F14726C2-C05F-4997-A17F-1FE87E886B5F}"
 EndProject
