@@ -130,15 +130,5 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IEXTrading\IEXTrading.csproj">
-      <Project>{e077b71c-f73a-4991-8a32-2c6c727082c4}</Project>
-      <Name>IEXTrading</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Library\Library.csproj">
-      <Project>{9cf26216-0cd8-41d2-a244-2bcf5046bf1b}</Project>
-      <Name>Library</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
