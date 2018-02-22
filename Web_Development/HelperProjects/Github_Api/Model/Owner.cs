@@ -1,7 +1,5 @@
-﻿using Octokit.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AustinsFirstProject.Github_Api.Model
 {

@@ -64,7 +64,6 @@
     <Compile Include="Intrinio\Company.cs" />
     <Compile Include="Intrinio\Utility.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Return.cs" />
     <Compile Include="Ticker.cs" />
     <Compile Include="Utility.cs" />
@@ -73,6 +72,8 @@
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
