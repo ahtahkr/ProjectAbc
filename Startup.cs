@@ -33,7 +33,7 @@ namespace ProjectAbc
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="HelperProjects\**" />
+    <Compile Remove="Web_Development\**" />
+    <Content Remove="HelperProjects\**" />
+    <Content Remove="Web_Development\**" />
+    <EmbeddedResource Remove="HelperProjects\**" />
+    <EmbeddedResource Remove="Web_Development\**" />
+    <None Remove="HelperProjects\**" />
+    <None Remove="Web_Development\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -15,6 +26,10 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="HelperProjects\Library\Library.csproj" />
   </ItemGroup>
 
 </Project>

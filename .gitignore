@@ -1,8 +1,10 @@
 # Add any directories, files, or patterns you don't want to be tracked by ve
 .vs
 Web_Development/.vs
-Web_Development/obj
-Web_Development/bin
+obj
+bin
+HelperProjects/Library/bin
+HelperProjects/Library/obj
 Web_Development/packages
 Web_Development/HelperProjects/Library/obj
 Web_Development/HelperProjects/Library/bin
