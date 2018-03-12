@@ -49,6 +49,29 @@ namespace GitHubApi
                 return result;
             }
 
+            public static string Get_Basic_Info(string app_name, int repo_id, string token)
+            {
+                string result;
+                try
+                {
+                    var client = new GitHubClient(new ProductHeaderValue(app_name));
+
+                    if (!String.IsNullOrEmpty(token))
+                    {
+                        var tokenAuth = new Octokit.Credentials(token);
+                        client.Credentials = tokenAuth;
+                    }
+                    Octokit.Repository repository = client.Repository.Get(repo_id).Result;
+                    result = JsonConvert.SerializeObject(repository);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log_Error("AustinsFirstProject.Github_Api.Api.Rest_Api_V3.Repositories.Get_Basic_Info failed. Error Msg: " + ex.Message);
+                    result = "";
+                }
+                return result;
+            }
+
             public static string Get_Commits(string app_name, string _owner, string _repo, string token)
             {
                 string result;

@@ -39,6 +39,21 @@ namespace ProjectAbc.Controllers
             List<Library.GitAccessor.Model.Repository> repos = JsonConvert.DeserializeObject<List<Library.GitAccessor.Model.Repository>>(Repositories.Get_User_Repositories(user, App_Name, Api_Key));
             return View(repos);
         }
+
+        [HttpGet("[action]/{id}", Name = "RepositoryGet")]
+        public IActionResult Repository(int id)
+        {
+            IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
+            configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
+
+            string App_Name = configRoot.GetSection("environmentVariables")["App_Name"];
+            string Api_Key = configRoot.GetSection("environmentVariables")["GitHub_Api_Key"];
+
+            Library.GitAccessor.Model.Repository repo 
+                = JsonConvert.DeserializeObject<Library.GitAccessor.Model.Repository>(GitHubApi.Rest_Api_V3.Repositories.Get_Basic_Info(App_Name, id, Api_Key));
+
+            return View(repo);
+        }
         
         // POST: api/GitAccessor
         [HttpPost]

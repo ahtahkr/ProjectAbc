@@ -2,14 +2,16 @@
 
 @{
     ViewData["Title"] = "GitUser";
+    Layout = "~/Views/Layout.cshtml";
 }
 
 <div>
-    <img src="@Model.First().Owner.AvatarUrl" />
+    <img src="@Model.First().Owner.AvatarUrl" class="img-thumbnail" alt="@Model.First().Owner.Login" style="height:50px; width:50px;"/>
     <a href="@Model.First().Owner.HtmlUrl"><h4>@Model.First().Owner.Login</h4></a>
 </div>
+<br />
 <div>
-    <h4>User GitHub Repositories</h4>
+    <h6>User's GitHub Repositories</h6>
     <table class="table">
         <thead>
             <tr>
@@ -30,10 +32,10 @@
             {
                 <tr>
                     <td>
-                        <a href="@item.HtmlUrl">@item.Name</a>
+                        @Html.RouteLink(@item.Name, new { controller = "GitAccessor", action = "Repository", id=item.Id })
                     </td>
                     <td>
-                        @item.CreatedAt
+                        @String.Format("{0:r}", item.CreatedAt)
                     </td>
                     <td>
                         @item.DefaultBranch
