@@ -9,6 +9,7 @@ namespace Library
     {
         public static void Log_Error(string message, string _filename = "", string folder = "")
         {
+            return;
             string base_directory;
             string filename;
 
@@ -43,6 +44,7 @@ namespace Library
 
         public static void Log(string message, string _filename = "", string folder = "")
         {
+            return;
             string base_directory;
             string filename;
 
