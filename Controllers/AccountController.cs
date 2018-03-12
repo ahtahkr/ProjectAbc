@@ -14,8 +14,7 @@ namespace ProjectAbc.Controllers
         {
             var method = System.Reflection.MethodBase.GetCurrentMethod();
             var fullName = string.Format("{0}.{1}({2})", method.ReflectedType.FullName, method.Name, string.Join(",", method.GetParameters().Select(o => string.Format("{0} {1}", o.ParameterType, o.Name)).ToArray()));
-            Library.Logger.Log(fullName);
-
+            
             string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}" + "/Account/";
             if ((User != null) && User.Identity.IsAuthenticated)
             {
@@ -31,8 +30,7 @@ namespace ProjectAbc.Controllers
         {
             var method = System.Reflection.MethodBase.GetCurrentMethod();
             var fullName = string.Format("{0}.{1}({2})", method.ReflectedType.FullName, method.Name, string.Join(",", method.GetParameters().Select(o => string.Format("{0} {1}", o.ParameterType, o.Name)).ToArray()));
-            Library.Logger.Log(fullName);
-
+            
             return View();
         }
 
@@ -41,8 +39,7 @@ namespace ProjectAbc.Controllers
         {
             var method = System.Reflection.MethodBase.GetCurrentMethod();
             var fullName = string.Format("{0}.{1}({2})", method.ReflectedType.FullName, method.Name, string.Join(",", method.GetParameters().Select(o => string.Format("{0} {1}", o.ParameterType, o.Name)).ToArray()));
-            Library.Logger.Log(fullName);
-
+            
             return View();
         }
 
@@ -51,8 +48,7 @@ namespace ProjectAbc.Controllers
         {
             var method = System.Reflection.MethodBase.GetCurrentMethod();
             var fullName = string.Format("{0}.{1}({2})", method.ReflectedType.FullName, method.Name, string.Join(",", method.GetParameters().Select(o => string.Format("{0} {1}", o.ParameterType, o.Name)).ToArray()));
-            Library.Logger.Log(fullName);
-
+            
             return View();
         }
     }

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Library.GitAccessor.Model.Repository>
+
+@{
+    ViewData["Title"] = "GitUser";
+}
+
+<div>
+    <img src="@Model.First().Owner.AvatarUrl" />
+    <a href="@Model.First().Owner.HtmlUrl"><h4>@Model.First().Owner.Login</h4></a>
+</div>
+<div>
+    <h4>User GitHub Repositories</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    CreatedAt
+                </th>
+                <th>
+                    DefaultBranch
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@item.HtmlUrl">@item.Name</a>
+                    </td>
+                    <td>
+                        @item.CreatedAt
+                    </td>
+                    <td>
+                        @item.DefaultBranch
+                    </td><td>
+                        <a href="@item.HtmlUrl" target="_blank">Link to Github</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
