@@ -85,6 +85,7 @@ namespace ProjectAbc.Controllers
                 }
                 catch (Exception ex)
                 {
+                    string test = ex.Message;
                     repo.CommitEvents = new List<Library.GitAccessor.Model.CommitEvent>();
                 }
             }
