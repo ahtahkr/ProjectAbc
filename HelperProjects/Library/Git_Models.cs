@@ -42,6 +42,7 @@ namespace Library.GitAccessor.Model
         public Owner Owner { get; set; }
         public Parent Parent {get; set; }
         public Parent Source { get; set; }
+        public List<CommitEvent> CommitEvents { get; set; }
     }
     public class Owner
     {
@@ -134,5 +135,10 @@ namespace Library.GitAccessor.Model
         public Reason Reason { get; set; }
         public string Signature { get; set; }
         public string Payload { get; set; }
+    }
+    public class Reason
+    {
+        public string StringValue { get; set; }
+        public int Value { get; set; }
     }
 }
