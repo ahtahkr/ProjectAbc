@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Layout.cshtml";
+}
+<h2 class="bg-transparent"> Powered By: <a href="https://clearbit.com/" target="_blank">Clearbit</a> <img src="https://logo.clearbit.com/clearbit.com" height="42" width="42" /></h2><br />
+<script>
+    function Company_Name()
+    {
+        var company = $("#companyname").val();
+        if (company.length > 0) {
+
+            // post request
+            $.get("https://autocomplete.clearbit.com/v1/companies/suggest?query=" + company, {})
+                .fail(function (e) {
+                    console.log('error');
+                    console.log(e);
+                })
+                .done(function (result) {
+                    console.log('done');
+                    console.log(result);
+
+                    var html = '<ol class="list-group">';
+                    for (var i = 0; i < result.length; i++)
+                    {
+                        var text = '<li class="list-group-item" style="background-color:#ffffcc;">';
+                        text += '<img src="' + result[i].logo + '" alt="" height="42" width="42">';
+                        text += '    <span style="font-weight:bold">' + result[i].name + '</span>';
+                        text += '    <a href="http://' + result[i].domain + '" target="_blank">' + result[i].domain + '</a>';
+                        text += '</li>';
+                        html += text;
+                    }
+                    html += '</ol>';
+
+                    $('#companies').empty();
+                    $('#companies')[0].innerHTML = html;
+                });
+        } else {
+            console.log('0');}
+    }
+</script>
+
+<div>
+    <form action="#" onsubmit="Company_Name();return false">
+        <div class="form-group">
+            <label for="companyname">Company Name</label>
+            <input type="text" class="form-control" id="companyname" placeholder="Enter company name you wish to find">
+        </div>
+        <button type="submit" class="btn btn-primary">Find</button>
+    </form>
+</div>
+
+<div id="companies">
+
+</div>
