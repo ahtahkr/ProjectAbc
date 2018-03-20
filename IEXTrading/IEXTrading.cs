@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjectAbc.IEXTrading
 {
-    public static class IEXTrading
+    public static class WebApi_V1
     {
         private const string URI = "https://api.iextrading.com/1.0/";
         public static string Chart(string symbol, string range = "" )
