@@ -7,17 +7,19 @@ namespace ProjectAbc.Classes.Stock.Model
 {
     public class Stock
     {
-        public string date { get; set; }
-        public double open { get; set; }
-        public double high { get; set; }
-        public double low { get; set; }
-        public double close { get; set; }
-        public int volume { get; set; }
-        public int unadjustedVolume { get; set; }
-        public double change { get; set; }
-        public double changePercent { get; set; }
-        public double vwap { get; set; }
-        public string label { get; set; }
-        public double changeOverTime { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan Minute { get; set; }
+        public double? Open { get; set; }
+        public double? High { get; set; }
+        public double? Average { get; set; }
+        public double? Low { get; set; }
+        public double? Close { get; set; }
+        public int? Volume { get; set; }
+        public int? UnadjustedVolume { get; set; }
+        public double? Change { get; set; }
+        public double? ChangePercent { get; set; }
+        public double? Vwap { get; set; }
+        public string Label { get; set; }
+        public double? ChangeOverTime { get; set; }
     }
 }

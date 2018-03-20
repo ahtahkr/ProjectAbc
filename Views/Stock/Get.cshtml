@@ -1,50 +1,57 @@
 ﻿@model ProjectAbc.Classes.Stock.Model.Organization;
 @using Newtonsoft.Json;
+@using ProjectAbc.Classes.Stock.Model;
 
 @{
     ViewData["Title"] = "Get";
     Layout = "~/Views/Layout.cshtml";
 }
-@*<head><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script></head>
-<script>
-    google.charts.load('current', { packages: ['corechart', 'line'] });
-    //google.charts.setOnLoadCallback(drawBackgroundColor);
+<head><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script></head>
 
-    function drawBackgroundColor(title_x_axis, chart_container) {
-        console.log('drawBackgroundColor');
-        console.log(title_x_axis);
-        console.log(chart_container);
+<script>    
+    function draw_Chart(title_x_axis, chart_container, _data) {
         var data = new google.visualization.DataTable();
-        data.addColumn('datetime', 'X');
-        data.addColumn('number', 'Dogs');
-
-        data.addRows([
-            [new Date(2000, 8, 5, 1, 1, 1), 500], [new Date(2000, 8, 5, 1, 2, 3), 510], [new Date(2000, 8, 5, 1, 4, 5), 523]
-            , [new Date(2000, 8, 6, 1, 4, 5), 523], [new Date(2000, 8, 10, 1, 4, 5), 523], [new Date(2000, 8, 15, 1, 4, 5), 523]
-        ]);
-
+        data.addColumn('datetime', 'Date');
+        data.addColumn('number', 'Price');
+        
+        var jsonData = [];
+        for (var a = 0; a < _data.length; a++) {
+            var dt = new Date(_data[a].Key);
+            var val = _data[a].Value;
+            jsonData.push([new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), dt.getHours(), dt.getMinutes(), dt.getSeconds()), val]);
+        }
+        data.addRows(jsonData);
         var options = {
-            hAxis: {
-                title: title_x_axis
-            },
-            vAxis: {
-                title: 'Price'
-            },
+            height: 240,
+            title: title_x_axis,
             backgroundColor: '#f1f8e9'
         };
 
         var chart = new google.visualization.LineChart(document.getElementById(chart_container));
         chart.draw(data, options);
     }
-
-    
-</script>*@
+</script>
 
 <h2>Stock</h2>
-@*<div id="chart_today"></div>
-<div id="chart_3m"></div>
-<script>google.charts.setOnLoadCallback(drawBackgroundColor('asdf', 'chart_today')); </script>*@
-@*drawBackgroundColor(asdf,chart_3m);*@
+<div class="row" id="chart_today"></div>
+<br />
+<div class="row" id="chart"></div>
+
+<script>
+    google.charts.load('current', { packages: ['corechart', 'line'] });
+    google.charts.setOnLoadCallback(function () { draw_Chart('Stock History Price Chart', 'chart', @Html.Raw(@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks))); });
+    google.charts.setOnLoadCallback(function () { draw_Chart('Stock Price Chart for Today', 'chart_today', @Html.Raw(@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks_Today))); });
+</script>
+@**@
+<div>
+    <h4>get stock</h4>
+    <p>@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks)</p>
+</div>
+
+<div>
+    <h4>get stock today</h4>
+    <p>@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks_Today)</p>
+</div>
 
 <div><h4>Company</h4>
     <p>@JsonConvert.SerializeObject(Model.Company)</p></div>
