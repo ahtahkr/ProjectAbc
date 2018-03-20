@@ -5,6 +5,13 @@ using System.Threading.Tasks;
 
 namespace ProjectAbc.Classes.Stock.Model
 {
+    public class Organization
+    {
+        public Company Company { get; set; }
+        public List<Stock> Stocks { get; set; }
+        public List<Stock> Stocks_Today { get; set; }
+        public Book Book { get; set; }
+    }
     public class Company
     {
         public string Symbol { get; set; }
@@ -15,9 +22,6 @@ namespace ProjectAbc.Classes.Stock.Model
         public string Description { get; set; }
         public string CEO { get; set; }
         public string IssueType { get; set; }
-        public string Sector { get; set; }
-        public List<Stock> Stocks { get; set; }
-        public List<Stock> Stocks_Today { get; set; }
-        public Book Book { get; set; }
+        public string Sector { get; set; }        
     }
 }
