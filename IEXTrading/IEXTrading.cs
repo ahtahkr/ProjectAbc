@@ -31,7 +31,7 @@ namespace ProjectAbc.IEXTrading
         }
         public static string News(string symbol)
         {
-            string full_uri = URI + "stock/" + symbol + "/News";
+            string full_uri = URI + "stock/" + symbol + "/news";
             return Library.HttpRequestUtility.GetRequest(full_uri);
         }
     }

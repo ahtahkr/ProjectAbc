@@ -1,19 +1,20 @@
 ﻿@model ProjectAbc.Classes.Stock.Model.Organization;
 @using Newtonsoft.Json;
 @using ProjectAbc.Classes.Stock.Model;
-
 @{
     ViewData["Title"] = "Get";
     Layout = "~/Views/Layout.cshtml";
 }
-<head><script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script></head>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<script>
 
-<script>    
     function draw_Chart(title_x_axis, chart_container, _data) {
         var data = new google.visualization.DataTable();
         data.addColumn('datetime', 'Date');
         data.addColumn('number', 'Price');
-        
+
         var jsonData = [];
         for (var a = 0; a < _data.length; a++) {
             var dt = new Date(_data[a].Key);
@@ -31,14 +32,13 @@
         chart.draw(data, options);
     }
 </script>
-
 <div class="container-fluid bg-grey">
     <div class="row">
         <div class="col-sm-1">
-            <img src="@Model.Logo.Url" class="justify-content-sm-center" />
+            <img src="@Model.Logo.Url" class="img-fluid" />
         </div>
         <div class="col-sm-8">
-            <h2><a href="@Model.Company.Website" target="_blank">@Model.Company.CompanyName</a></h2><br>
+            <h2 class="text-left"><a href="@Model.Company.Website" target="_blank">@Model.Company.CompanyName</a></h2>
             <div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Ticker Symbol: @Model.Company.Symbol</li>
@@ -53,7 +53,6 @@
         </div>
     </div>
 </div>
-
 <div class="row" id="chart_today"></div>
 <br />
 <div class="row" id="chart"></div>
@@ -64,4 +63,23 @@
     google.charts.setOnLoadCallback(function () { draw_Chart('Stock Price Chart for Today', 'chart_today', @Html.Raw(@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks_Today))); });
 </script>
 
-
+<div class="container-fluid bg-grey">
+    <h3>News</h3>
+    <div class="row">
+        <div class="list-group list-group-flush">
+            @{
+                foreach (var item in Model.News)
+                {
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Headline</a></h5>
+                            <small>@item.Datetime.ToShortDateString() @item.Datetime.ToShortTimeString() </small>
+                        </div>
+                        <p class="mb-1">@item.Summary</p>
+                        <small>Source: @item.Source</small>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

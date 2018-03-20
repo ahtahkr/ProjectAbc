@@ -24,6 +24,8 @@ namespace ProjectAbc.Controllers
             {
                 //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
 
+                organization.News = JsonConvert.DeserializeObject<List<Classes.Stock.Model.News>>(IEXTrading.WebApi_V1.News(symbol));
+
                 organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "3m"));
                 organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),
                     new IsoDateTimeConverter { DateTimeFormat = "yyyyMMdd" });
@@ -46,6 +48,8 @@ namespace ProjectAbc.Controllers
                 else
                 {
                     //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
+
+                    organization.News = JsonConvert.DeserializeObject<List<Classes.Stock.Model.News>>(IEXTrading.WebApi_V1.News(symbol));
 
                     organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol,"3m"));
                     organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),

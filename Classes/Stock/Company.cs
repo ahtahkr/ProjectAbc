@@ -14,6 +14,7 @@ namespace ProjectAbc.Classes.Stock.Model
         public List<Stock> Stocks_Today { get; set; }
         public Book Book { get; set; }
         public Logo Logo { get; set; }
+        public List<News> News { get; set; }
 
         public string Get_Stock_DateTime_Price(int OrganizationStock)
         {
