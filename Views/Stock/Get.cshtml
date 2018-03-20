@@ -32,7 +32,28 @@
     }
 </script>
 
-<h2>Stock</h2>
+<div class="container-fluid bg-grey">
+    <div class="row">
+        <div class="col-sm-1">
+            <img src="@Model.Logo.Url" class="justify-content-sm-center" />
+        </div>
+        <div class="col-sm-8">
+            <h2><a href="@Model.Company.Website" target="_blank">@Model.Company.CompanyName</a></h2><br>
+            <div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Ticker Symbol: @Model.Company.Symbol</li>
+                    <li class="list-group-item">Exchange: @Model.Company.Exchange</li>
+                    <li class="list-group-item">Industry: @Model.Company.Industry</li>
+                    <li class="list-group-item">CEO: @Model.Company.CEO</li>
+                    <li class="list-group-item">IssueType: @Model.Company.IssueType</li>
+                    <li class="list-group-item">Sector: @Model.Company.Sector</li>
+                    <li class="list-group-item">@Model.Company.Description</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row" id="chart_today"></div>
 <br />
 <div class="row" id="chart"></div>
@@ -42,31 +63,5 @@
     google.charts.setOnLoadCallback(function () { draw_Chart('Stock History Price Chart', 'chart', @Html.Raw(@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks))); });
     google.charts.setOnLoadCallback(function () { draw_Chart('Stock Price Chart for Today', 'chart_today', @Html.Raw(@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks_Today))); });
 </script>
-@**@
-<div>
-    <h4>get stock</h4>
-    <p>@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks)</p>
-</div>
 
-<div>
-    <h4>get stock today</h4>
-    <p>@Model.Get_Stock_DateTime_Price((int)Organization_Stock.Stocks_Today)</p>
-</div>
 
-<div><h4>Company</h4>
-    <p>@JsonConvert.SerializeObject(Model.Company)</p></div>
-
-<div>
-    <h4>Book</h4>
-    <p>@JsonConvert.SerializeObject(Model.Book)</p>
-</div>
-
-<div>
-    <h4>Stock</h4>
-    <p>@JsonConvert.SerializeObject(Model.Stocks)</p>
-</div>
-
-<div>
-    <h4>Stocks_Today</h4>
-    <p>@JsonConvert.SerializeObject(Model.Stocks_Today)</p>
-</div>

@@ -24,5 +24,10 @@ namespace ProjectAbc.IEXTrading
             string full_uri = URI + "stock/" + symbol + "/company";
             return Library.HttpRequestUtility.GetRequest(full_uri);
         }
+        public static string Logo(string symbol)
+        {
+            string full_uri = URI + "stock/" + symbol + "/logo";
+            return Library.HttpRequestUtility.GetRequest(full_uri);
+        }
     }
 }
