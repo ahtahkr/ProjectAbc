@@ -43,6 +43,45 @@ namespace ProjectAbc.Classes.Stock.Model
         public double Week52High { get; set; }
         public double Week52Low { get; set; }
         public double YtdChange { get; set; }
+    }
+    public class Bid
+    {
+        public double Price { get; set; }
+        public int Size { get; set; }
+        public object Timestamp { get; set; }
+    }
 
+    public class Ask
+    {
+        public double price { get; set; }
+        public int Size { get; set; }
+        public long Timestamp { get; set; }
+    }
+
+    public class Trade
+    {
+        public double Price { get; set; }
+        public int Size { get; set; }
+        public int TradeId { get; set; }
+        public bool IsISO { get; set; }
+        public bool IsOddLot { get; set; }
+        public bool IsOutsideRegularHours { get; set; }
+        public bool IsSinglePriceCross { get; set; }
+        public bool IsTradeThroughExempt { get; set; }
+        public long Timestamp { get; set; }
+    }
+
+    public class SystemEvent
+    {
+        public string systemEvent { get; set; }
+        public long Timestamp { get; set; }
+    }
+    public class Book
+    {
+        public Quote quote { get; set; }
+        public List<Bid> bids { get; set; }
+        public List<Ask> asks { get; set; }
+        public List<Trade> trades { get; set; }
+        public SystemEvent systemEvent { get; set; }
     }
 }

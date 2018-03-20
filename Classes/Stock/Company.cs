@@ -18,6 +18,6 @@ namespace ProjectAbc.Classes.Stock.Model
         public string Sector { get; set; }
         public List<Stock> Stocks { get; set; }
         public List<Stock> Stocks_Today { get; set; }
-        public Quote quote { get; set; }
+        public Book Book { get; set; }
     }
 }
