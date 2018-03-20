@@ -48,6 +48,14 @@
                     <li class="list-group-item">IssueType: @Model.Company.IssueType</li>
                     <li class="list-group-item">Sector: @Model.Company.Sector</li>
                     <li class="list-group-item">@Model.Company.Description</li>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            @foreach (var item in Model.Peers)
+                            {
+                                <li class="breadcrumb-item"><a href="@item.Url" target="_blank">@item.Name</a></li>
+                            }
+                        </ol>
+                    </nav>                    
                 </ul>
             </div>
         </div>

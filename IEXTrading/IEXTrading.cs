@@ -34,5 +34,10 @@ namespace ProjectAbc.IEXTrading
             string full_uri = URI + "stock/" + symbol + "/news";
             return Library.HttpRequestUtility.GetRequest(full_uri);
         }
+        public static string Peers(string symbol)
+        {
+            string full_uri = URI + "stock/" + symbol + "/peers";
+            return Library.HttpRequestUtility.GetRequest(full_uri);
+        }
     }
 }

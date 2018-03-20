@@ -7,6 +7,12 @@ namespace ProjectAbc.Classes.Stock.Model
 {
     public enum Organization_Stock:int { Stocks, Stocks_Today };
 
+    public class Peers
+    {
+        public string Name { get; set; }
+        public string Url { get; set; }
+    }
+
     public class Organization
     {
         public Company Company { get; set; }
@@ -15,6 +21,12 @@ namespace ProjectAbc.Classes.Stock.Model
         public Book Book { get; set; }
         public Logo Logo { get; set; }
         public List<News> News { get; set; }
+        public List<Peers> Peers { get; set; }
+
+        public Organization()
+        {
+            this.Peers = new List<Model.Peers>();
+        }
 
         public string Get_Stock_DateTime_Price(int OrganizationStock)
         {

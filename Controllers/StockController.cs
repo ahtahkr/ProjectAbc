@@ -24,6 +24,18 @@ namespace ProjectAbc.Controllers
             {
                 //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
 
+                string[] peers = JsonConvert.DeserializeObject<string[]>(IEXTrading.WebApi_V1.Peers(symbol));
+                string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+
+                for (int a = 0; a < peers.Length; a++)
+                {
+                    Classes.Stock.Model.Peers Peers = new Classes.Stock.Model.Peers();
+                    Peers.Name = peers[a];
+                    Peers.Url = baseUrl + "/Stock/" + peers[a];
+
+                    organization.Peers.Add(Peers);
+                }
+
                 organization.News = JsonConvert.DeserializeObject<List<Classes.Stock.Model.News>>(IEXTrading.WebApi_V1.News(symbol));
 
                 organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "3m"));
@@ -48,6 +60,17 @@ namespace ProjectAbc.Controllers
                 else
                 {
                     //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
+                    string[] peers = JsonConvert.DeserializeObject<string[]>(IEXTrading.WebApi_V1.Peers(symbol));
+                    string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+
+                    for (int a = 0; a < peers.Length; a++)
+                    {
+                        Classes.Stock.Model.Peers Peers = new Classes.Stock.Model.Peers();
+                        Peers.Name = peers[a];
+                        Peers.Url = baseUrl + "/Stock/" + peers[a];
+
+                        organization.Peers.Add(Peers);
+                    }
 
                     organization.News = JsonConvert.DeserializeObject<List<Classes.Stock.Model.News>>(IEXTrading.WebApi_V1.News(symbol));
 
