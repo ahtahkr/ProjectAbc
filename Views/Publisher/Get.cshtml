@@ -21,12 +21,13 @@
         @foreach (var item in Model.Sources)
         {
             item.Assign_Image_Url();
+            var url = "/News/$" + item.Id;
 
             <div class="card" style="width: 10rem;" title="@item.Description">
                 <img class="card-img-top img-fluid" src="@item.ImageUrl" alt="">
                 <div class="card-body">
                     <h5 class="card-title"><a href="@item.Url" target="_blank">@item.Name</a></h5>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="@url" class="btn btn-primary">List Articles</a>
                 </div>
             </div>
 

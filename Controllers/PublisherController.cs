@@ -28,10 +28,10 @@ namespace ProjectAbc.Controllers
         }
 
         // GET: api/Publisher/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
+        //[HttpGet("{id}", Name = "GetString")]
+        //public IActionResult Get(string id)
         //{
-        //    return "value";
+        //    return View();
         //}
         
         //// POST: api/Publisher
