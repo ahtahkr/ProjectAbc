@@ -1,0 +1,37 @@
+﻿@model ProjectAbc.Classes.News.News
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>@Model.Title</h2>
+        </div>
+        <div class="col-sm">
+            Powered By: <a href="https://newsapi.org/" target="_blank" class="font-weight-bold">News API</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="list-group list-group-flush">
+        @foreach (var item in Model.Articles)
+        {
+            <div class="list-group-item container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img src="@item.UrlToImage" class="img-fluid" />
+                    </div>
+                    <div class="col-sm">
+                        <h6><a href="@item.Url" target="_blank">@item.Title</a></h6>
+                        <small>@item.Source.Name  @item.PublishedAt.ToShortDateString() @item.PublishedAt.ToShortTimeString()</small>
+                        <p class="text-justify font-weight-bold">@item.Description</p>
+                        <small>Author: @item.Author</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

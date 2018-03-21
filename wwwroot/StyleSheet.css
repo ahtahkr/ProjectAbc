@@ -45,3 +45,11 @@ body > div {
 html {
     font-size:12px;
 }
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}

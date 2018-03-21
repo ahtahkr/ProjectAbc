@@ -7,22 +7,27 @@ namespace ProjectAbc.Classes.News
 {
     public class News
     {
-        public List<Article> articles { get; set; }
+        public string Title { get; set; }
+        public List<Article> Articles { get; set; }
     }
-
     public class Article
     {
-        public Source source { get; set; }
-        public string author { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public string url { get; set; }
-        public string urlToImage { get; set; }
-        public DateTime publishedAt { get; set; }
+        public Source Source { get; set; }
+        public string Author { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+        public string UrlToImage { get; set; }
+        public DateTime PublishedAt { get; set; }
     }
     public class Source
     {
-        public string id { get; set; }
-        public string name { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Url { get; set; }
+        public string Category { get; set; }
+        public string Language { get; set; }
+        public string Country { get; set; }
     }
 }
