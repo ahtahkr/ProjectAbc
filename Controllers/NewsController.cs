@@ -23,11 +23,19 @@ namespace ProjectAbc.Controllers
         }
 
         // GET: /News/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public IActionResult Get(int id)
-        //{
-        //    return View();
-        //}
+        [HttpGet("{keyword}", Name = "GetString")]
+        public IActionResult Get(string keyword)
+        {
+            if (String.IsNullOrEmpty(keyword))
+            {
+                keyword = "America";
+            }
+            Classes.News.News News
+                = JsonConvert.DeserializeObject<Classes.News.News>(
+                        Classes.News.NewsApiOrg.V2.Everything("24763003c86c4c439e53ccd7014a1a80", keyword));
+            News.Title = keyword;
+            return View(News);
+        }
         
         // POST: api/News
         //[HttpPost]
