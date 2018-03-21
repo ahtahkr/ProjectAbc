@@ -23,7 +23,7 @@ namespace ProjectAbc.Classes.News.NewsApiOrg
 
         public static string Sources(string Api_Key)
         {
-            string full_uri = URI + "sources?apiKey=" + Api_Key;
+            string full_uri = URI + "sources?language=en&apiKey=" + Api_Key;
             return Library.HttpRequestUtility.GetRequest(full_uri);
         }
     }

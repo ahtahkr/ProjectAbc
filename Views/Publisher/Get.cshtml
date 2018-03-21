@@ -1,0 +1,35 @@
+﻿@model ProjectAbc.Classes.News.Publisher
+
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>News Publishers</h2>
+        </div>
+        <div class="col-sm">
+            Powered By: <a href="https://newsapi.org/" target="_blank" class="font-weight-bold">News API</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Sources)
+        {
+            item.Assign_Image_Url();
+
+            <div class="card" style="width: 10rem;" title="@item.Description">
+                <img class="card-img-top img-fluid" src="@item.ImageUrl" alt="">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="@item.Url" target="_blank">@item.Name</a></h5>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
