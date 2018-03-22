@@ -5,6 +5,17 @@
     Layout = "~/Views/Layout.cshtml";
 }
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            
+        </div>
+        <div class="col-sm">
+            Powered By: <a href="https://developer.github.com/v3/" target="_blank" class="font-weight-bold">GitHub Api</a>
+        </div>
+    </div>
+</div>
+
 <div>
     <img src="@Model.First().Owner.AvatarUrl" class="img-thumbnail" alt="@Model.First().Owner.Login" style="height:50px; width:50px;"/>
     <a href="@Model.First().Owner.HtmlUrl"><h4>@Model.First().Owner.Login</h4></a>

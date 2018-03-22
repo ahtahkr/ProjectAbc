@@ -4,10 +4,19 @@
     Layout = "~/Views/Layout.cshtml";
 }
 
-<h2>Git Accessor</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            
+        </div>
+        <div class="col-sm">
+            Powered By: <a href="https://developer.github.com/v3/" target="_blank" class="font-weight-bold">GitHub Api</a>
+        </div>
+    </div>
+</div>
 
 <form action="GitAccessor/GitUser">
-    User: <input type="text" name="user" value="bwillis">
+    User: <input type="text" name="user" value="github">
     <input type="submit" value="List User Repositories">
 </form>
 
