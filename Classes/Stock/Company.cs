@@ -20,8 +20,15 @@ namespace ProjectAbc.Classes.Stock.Model
         public List<Stock> Stocks_Today { get; set; }
         public Book Book { get; set; }
         public Logo Logo { get; set; }
-        public List<News> News { get; set; }
+        public Intrinio.CompanyNews News { get; set; }
         public List<Peers> Peers { get; set; }
+
+        private const string Yahoo_Finance_Link = "https://finance.yahoo.com/quote/";
+
+        public string Get_Yahoo_Finance_Link()
+        {
+            return Yahoo_Finance_Link + this.Company.Symbol;
+        }
 
         public Organization()
         {

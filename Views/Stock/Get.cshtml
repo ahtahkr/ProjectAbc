@@ -31,15 +31,44 @@
         var chart = new google.visualization.LineChart(document.getElementById(chart_container));
         chart.draw(data, options);
     }
+
+    function Ticker_Symbol() {
+        var company = $("#tickersymbol").val();
+        if (company.length > 0) {
+            var getUrl = window.location;
+            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/' + company;
+
+            window.location.href = baseUrl;
+        }
+    }
 </script>
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-10">
-            
+        <div class="col-sm-6">
+
+            <form class="form-inline" action="#" onsubmit="Ticker_Symbol(); return false;">
+                @*<div class="form-group mb-2">
+    <label class="sr-only">Ticker Symbol</label>
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+                </div>*@
+                <div class="form-group mx-sm-3 mb-2">
+                    @*<label class="sr-only">Password</label>*@
+                    <input type="text" class="form-control" id="tickersymbol" placeholder="Enter Ticker Symbol">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Get Info</button>
+            </form>
+
+            @*<form action="#" onsubmit="Ticker_Symbol(); return false;">
+                <div class="form-group">
+                    <label for="companyname">Ticker Symbol</label>
+                    <input type="text" class="form-control" id="tickersymbol" placeholder="Enter Company Ticker Symbol"><button type="submit" class="btn btn-primary d-inline-block">Get Info</button>
+                    
+                </div>                
+            </form>*@
         </div>
         <div class="col-sm">
-            Powered By: <a href="https://iextrading.com/" target="_blank" class="font-weight-bold">IEXTrading</a>
+            Powered By: <a href="https://iextrading.com/" target="_blank" class="font-weight-bold">IEXTrading</a> and <a href="https://intrinio.com/" target="_blank" class="font-weight-bold">Intrinio</a>
         </div>
     </div>
 </div>
@@ -54,6 +83,7 @@
             <div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Ticker Symbol: @Model.Company.Symbol</li>
+                    <li class="list-group-item"><a class="font-weight-bold" href="@Model.Get_Yahoo_Finance_Link()" target="_blank">Link to Yahoo Finance</a></li>
                     <li class="list-group-item">Exchange: @Model.Company.Exchange</li>
                     <li class="list-group-item">Industry: @Model.Company.Industry</li>
                     <li class="list-group-item">CEO: @Model.Company.CEO</li>
@@ -88,15 +118,15 @@
     <div class="row">
         <div class="list-group list-group-flush">
             @{
-                foreach (var item in Model.News)
+                foreach (var item in Model.News.Data)
                 {
                     <div class="list-group-item">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Headline</a></h5>
-                            <small>@item.Datetime.ToShortDateString() @item.Datetime.ToShortTimeString() </small>
+                            <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Title</a></h5>
+                            <small>@item.Publication_Date.ToShortDateString() @item.Publication_Date.ToShortTimeString() </small>
                         </div>
                         <p class="mb-1">@item.Summary</p>
-                        <small>Source: @item.Source</small>
+                        @*<small>Source: @item.Source</small>*@
                     </div>
                 }
             }
