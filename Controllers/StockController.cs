@@ -54,7 +54,7 @@ namespace ProjectAbc.Controllers
 
                 try
                 {
-                    organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "3m"));
+                    organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1m"));
                 }
                 catch (Exception ex) { }
 
