@@ -50,26 +50,26 @@ namespace ProjectAbc.Controllers
                 {
                     organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
                 }
-                catch (Exception ex) { }
+                catch{ }
 
                 try
                 {
                     organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1m"));
                 }
-                catch (Exception ex) { }
+                catch { }
 
                 try
                 {
                     organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),
                     new IsoDateTimeConverter { DateTimeFormat = "yyyyMMdd" });
                 }
-                catch (Exception ex) { }
+                catch { }
 
                 try
                 {
                     organization.Logo = JsonConvert.DeserializeObject<Classes.Stock.Model.Logo>(IEXTrading.WebApi_V1.Logo(symbol));
                 }
-                catch (Exception ex) { }
+                catch { }
             }
             return View(organization);
         }
@@ -112,26 +112,26 @@ namespace ProjectAbc.Controllers
                     {
                         organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
                     }
-                    catch (Exception ex) { }
+                    catch { }
 
                     try
                     {
                         organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "3m"));
                     }
-                    catch (Exception ex) { }
+                    catch { }
 
                     try
                     {
                         organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),
                         new IsoDateTimeConverter { DateTimeFormat = "yyyyMMdd" });
                     }
-                    catch (Exception ex) { }
+                    catch { }
 
                     try
                     {
                         organization.Logo = JsonConvert.DeserializeObject<Classes.Stock.Model.Logo>(IEXTrading.WebApi_V1.Logo(symbol));
                     }
-                    catch (Exception ex) { }
+                    catch { }
                 }
             }
             return View(organization);
