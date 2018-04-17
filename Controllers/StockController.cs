@@ -48,7 +48,7 @@ namespace ProjectAbc.Controllers
 
                 try
                 {
-                    organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password));
+                    organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
                 }
                 catch (Exception ex) { }
 
@@ -110,7 +110,7 @@ namespace ProjectAbc.Controllers
 
                     try
                     {
-                        organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password));
+                        organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
                     }
                     catch (Exception ex) { }
 
