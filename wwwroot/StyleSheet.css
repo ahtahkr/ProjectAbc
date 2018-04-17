@@ -71,3 +71,10 @@ html {
     text-align: left;
     background-color: rgba(0,0,0,.05);
 }
+
+.news:nth-child(even) {
+    background-color: #e9ecef;
+}
+.news:nth-child(odd) {
+    background: transparent;
+}

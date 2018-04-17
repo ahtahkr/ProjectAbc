@@ -25,14 +25,20 @@ namespace ProjectAbc.Classes.Stock.Model
 
         private const string Yahoo_Finance_Link = "https://finance.yahoo.com/quote/";
 
+        public Organization()
+        {
+            this.Company = new Company();
+            this.Stocks = new List<Stock>();
+            this.Stocks_Today = new List<Stock>();
+            this.Book = new Book();
+            this.Logo = new Logo();
+            this.News = new Intrinio.CompanyNews();
+            this.Peers = new List<Peers>();
+        }
+
         public string Get_Yahoo_Finance_Link()
         {
             return Yahoo_Finance_Link + this.Company.Symbol;
-        }
-
-        public Organization()
-        {
-            this.Peers = new List<Model.Peers>();
         }
 
         public string Get_Stock_DateTime_Price(int OrganizationStock)

@@ -91,12 +91,12 @@
                     <li class="list-group-item">Sector: @Model.Company.Sector</li>
                     <li class="list-group-item">@Model.Company.Description</li>
                     <li class="list-group-item">
-                        <mark style="background-color:#FFFF00;" class="font-weight-bold">@Html.RouteLink("View " + Model.Company.CompanyName.Split(' ')[0] + "'s News" , new { controller = "CompanyNews", symbol = Model.Company.Symbol })</mark>
+                        <mark style="background-color:#FFFF00;" class="font-weight-bold">@Html.RouteLink("View " + Model.Company.CompanyName.Split(' ')[0] + "'s News", new { controller = "CompanyNews", symbol = Model.Company.Symbol })</mark>
                     </li>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             @foreach (var item in Model.Peers)
-            {
+                            {
                 <li class="breadcrumb-item"><a href="@item.Url" target="_blank">@item.Name</a></li>
 }
                         </ol>
@@ -117,26 +117,30 @@
 </script>
 
 <div class="container-fluid bg-grey">
-    <h3>News</h3>
-    <div class="row">
-        <div class="list-group list-group-flush">
-            @{
-                foreach (var item in Model.News.Data)
-                {
-                    <div class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Title</a></h5>
-                            <small>@item.Publication_Date.ToShortDateString() @item.Publication_Date.ToShortTimeString() </small>
+    @{ if (Model.News.Data.Count > 0)
+        {
+            <h3>News</h3>
+            <div class="row">
+                <div class="list-group list-group-flush">
+                    @{
+                        foreach (var item in Model.News.Data)
+                        {
+                            <div class="list-group-item news">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Title</a></h5>
+                                    <small>@item.Publication_Date.ToShortDateString() @item.Publication_Date.ToShortTimeString() </small>
+                                </div>
+                                <p class="mb-1">@item.Summary</p>
+                                @*<small>Source: @item.Source</small>*@
+                            </div>
+                        }
+                        <div class="list-group-item news">
+                            <mark style="background-color:#FFFF00;" class="font-weight-bold">@Html.RouteLink("...View More News", new { controller = "CompanyNews", symbol = Model.Company.Symbol })</mark>
+                            @*<small>Source: @item.Source</small>*@
                         </div>
-                        <p class="mb-1">@item.Summary</p>
-                        @*<small>Source: @item.Source</small>*@
-                    </div>
-                }
-                <div class="list-group-item">
-                    <mark style="background-color:#FFFF00;" class="font-weight-bold">@Html.RouteLink("...View More News", new { controller = "CompanyNews", symbol = Model.Company.Symbol })</mark>
-                    @*<small>Source: @item.Source</small>*@
+                    }
                 </div>
-            }
-        </div>
-    </div>
+            </div>
+        } 
+    }
 </div>

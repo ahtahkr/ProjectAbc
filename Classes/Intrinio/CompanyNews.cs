@@ -13,6 +13,10 @@ namespace ProjectAbc.Classes.Intrinio
         public int Current_Page { get; set; }
         public int Total_Pages { get; set; }
         public int Api_Call_Credits { get; set; }
+        public CompanyNews()
+        {
+            this.Data = new List<Datum>();
+        }
     }
     public class Datum
     {
@@ -23,5 +27,15 @@ namespace ProjectAbc.Classes.Intrinio
         public DateTime Publication_Date { get; set; }
         public string Summary { get; set; }
         public string Url { get; set; }
+        public Datum()
+        {
+            this.Ticker = "";
+            this.Figi_Ticker = "";
+            this.Figi = "";
+            this.Title = "";
+            this.Publication_Date = DateTime.UtcNow;
+            this.Summary = "";
+            this.Url = "";
+        }
     }
 }
