@@ -13,7 +13,6 @@ namespace ProjectAbc.Controllers
     [Route("[controller]")]
     public class PublisherController : Controller
     {
-        // GET: api/Publisher
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,30 +25,5 @@ namespace ProjectAbc.Controllers
                   );
             return View(Publisher);
         }
-
-        // GET: api/Publisher/5
-        //[HttpGet("{id}", Name = "GetString")]
-        //public IActionResult Get(string id)
-        //{
-        //    return View();
-        //}
-        
-        //// POST: api/Publisher
-        //[HttpPost]
-        //public void Post([FromBody]string value)
-        //{
-        //}
-        
-        //// PUT: api/Publisher/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-        
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

@@ -30,11 +30,6 @@ namespace ProjectAbc.Classes.News
         public string Language { get; set; }
         public string Country { get; set; }
         public string ImageUrl { get; set; }
-
-        public void Assign_Image_Url()
-        {
-            this.ImageUrl = "https://besticon-demo.herokuapp.com/icon?url=" + this.Url + "&size=80..120..200";
-        }
     }
     public class Publisher
     {
