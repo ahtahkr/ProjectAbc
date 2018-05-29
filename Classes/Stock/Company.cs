@@ -20,7 +20,7 @@ namespace ProjectAbc.Classes.Stock.Model
         public List<Stock> Stocks_Today { get; set; }
         public Book Book { get; set; }
         public Logo Logo { get; set; }
-        public Intrinio.CompanyNews News { get; set; }
+        public NewsApiOrg.Everything News { get; set; }
         public List<Peers> Peers { get; set; }
 
         private const string Yahoo_Finance_Link = "https://finance.yahoo.com/quote/";
@@ -32,7 +32,7 @@ namespace ProjectAbc.Classes.Stock.Model
             this.Stocks_Today = new List<Stock>();
             this.Book = new Book();
             this.Logo = new Logo();
-            this.News = new Intrinio.CompanyNews();
+            this.News = new NewsApiOrg.Everything();
             this.Peers = new List<Peers>();
         }
 

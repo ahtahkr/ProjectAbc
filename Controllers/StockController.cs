@@ -40,15 +40,13 @@ namespace ProjectAbc.Controllers
 
                 IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
                 configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
-
-                string Intrinio_Api_Username = configRoot.GetSection("environmentVariables")["Intrinio_Api_Username"];
-                string Intrinio_Api_Password = configRoot.GetSection("environmentVariables")["Intrinio_Api_Password"];
+                string Api_Key = configRoot.GetSection("environmentVariables")["News_Api_Key"];
 
                 symbol = symbol.ToUpper();
 
                 try
                 {
-                    organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
+                    organization.News = JsonConvert.DeserializeObject<NewsApiOrg.Everything>(NewsApiOrg.Api.V2.Everything(Api_Key, symbol)); 
                 }
                 catch{ }
 
@@ -78,61 +76,56 @@ namespace ProjectAbc.Controllers
         [HttpGet("{symbol}", Name = "GetStock")]
         public IActionResult Get(string symbol)
         {
-            Classes.Stock.Model.Organization organization = new Classes.Stock.Model.Organization();
 
-            if (String.IsNullOrEmpty(symbol)) { }
+            Classes.Stock.Model.Organization organization = new Classes.Stock.Model.Organization();
+            organization.Company = JsonConvert.DeserializeObject<Classes.Stock.Model.Company>(IEXTrading.WebApi_V1.Company(symbol));
+            if (String.IsNullOrEmpty(organization.Company.CompanyName)) { }
             else
             {
-                organization.Company = JsonConvert.DeserializeObject<Classes.Stock.Model.Company>(IEXTrading.WebApi_V1.Company(symbol));
-                if (String.IsNullOrEmpty(organization.Company.CompanyName)) { }
-                else
+                //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
+
+                string[] peers = JsonConvert.DeserializeObject<string[]>(IEXTrading.WebApi_V1.Peers(symbol));
+                string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+
+                for (int a = 0; a < peers.Length; a++)
                 {
-                    //organization.Book = JsonConvert.DeserializeObject<Classes.Stock.Model.Book>(IEXTrading.WebApi_V1.Book(symbol));
-                    string[] peers = JsonConvert.DeserializeObject<string[]>(IEXTrading.WebApi_V1.Peers(symbol));
-                    string baseUrl = $"{this.Request.Scheme}://{this.Request.Host}{this.Request.PathBase}";
+                    Classes.Stock.Model.Peers Peers = new Classes.Stock.Model.Peers();
+                    Peers.Name = peers[a];
+                    Peers.Url = baseUrl + "/Stock/" + peers[a];
 
-                    for (int a = 0; a < peers.Length; a++)
-                    {
-                        Classes.Stock.Model.Peers Peers = new Classes.Stock.Model.Peers();
-                        Peers.Name = peers[a];
-                        Peers.Url = baseUrl + "/Stock/" + peers[a];
-
-                        organization.Peers.Add(Peers);
-                    }
-
-                    IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
-                    configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
-
-                    string Intrinio_Api_Username = configRoot.GetSection("environmentVariables")["Intrinio_Api_Username"];
-                    string Intrinio_Api_Password = configRoot.GetSection("environmentVariables")["Intrinio_Api_Password"];
-
-                    symbol = symbol.ToUpper();
-
-                    try
-                    {
-                        organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password, 10, 1));
-                    }
-                    catch { }
-
-                    try
-                    {
-                        organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "3m"));
-                    }
-                    catch { }
-
-                    try
-                    {
-                        organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),
-                        new IsoDateTimeConverter { DateTimeFormat = "yyyyMMdd" });
-                    }
-                    catch { }
-
-                    try
-                    {
-                        organization.Logo = JsonConvert.DeserializeObject<Classes.Stock.Model.Logo>(IEXTrading.WebApi_V1.Logo(symbol));
-                    }
-                    catch { }
+                    organization.Peers.Add(Peers);
                 }
+
+                IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
+                configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
+                string Api_Key = configRoot.GetSection("environmentVariables")["News_Api_Key"];
+
+                symbol = symbol.ToUpper();
+
+                try
+                {
+                    organization.News = JsonConvert.DeserializeObject<NewsApiOrg.Everything>(NewsApiOrg.Api.V2.Everything(Api_Key, symbol));
+                }
+                catch { }
+
+                try
+                {
+                    organization.Stocks = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1m"));
+                }
+                catch { }
+
+                try
+                {
+                    organization.Stocks_Today = JsonConvert.DeserializeObject<List<Classes.Stock.Model.Stock>>(IEXTrading.WebApi_V1.Chart(symbol, "1d"),
+                    new IsoDateTimeConverter { DateTimeFormat = "yyyyMMdd" });
+                }
+                catch { }
+
+                try
+                {
+                    organization.Logo = JsonConvert.DeserializeObject<Classes.Stock.Model.Logo>(IEXTrading.WebApi_V1.Logo(symbol));
+                }
+                catch { }
             }
             return View(organization);
         }

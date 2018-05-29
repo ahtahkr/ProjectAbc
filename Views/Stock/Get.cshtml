@@ -68,7 +68,7 @@
             </form>*@
         </div>
         <div class="col-sm">
-            Powered By: <a href="https://iextrading.com/" target="_blank" class="font-weight-bold">IEXTrading</a> and <a href="https://intrinio.com/" target="_blank" class="font-weight-bold">Intrinio</a>
+            Powered By: <a href="https://iextrading.com/" target="_blank" class="font-weight-bold">IEXTrading</a> and <a href="https://newsapi.org/" target="_blank" class="font-weight-bold">News API</a>
         </div>
     </div>
 </div>
@@ -117,20 +117,20 @@
 </script>
 
 <div class="container-fluid bg-grey">
-    @{ if (Model.News.Data.Count > 0)
+    @{ if (Model.News.articles.Count > 0)
         {
             <h3>News</h3>
             <div class="row">
                 <div class="list-group list-group-flush">
                     @{
-                        foreach (var item in Model.News.Data)
+                        foreach (var item in Model.News.articles)
                         {
                             <div class="list-group-item news">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1"><a href="@item.Url" target="_blank">@item.Title</a></h5>
-                                    <small>@item.Publication_Date.ToShortDateString() @item.Publication_Date.ToShortTimeString() </small>
+                                    <h5 class="mb-1"><a href="@item.url" target="_blank">@item.title</a></h5>
+                                    <small>@item.publishedAt.ToShortDateString() @item.publishedAt.ToShortTimeString() </small>
                                 </div>
-                                <p class="mb-1">@item.Summary</p>
+                                <p class="mb-1">@item.description</p>
                                 @*<small>Source: @item.Source</small>*@
                             </div>
                         }

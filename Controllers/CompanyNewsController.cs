@@ -42,15 +42,13 @@ namespace ProjectAbc.Controllers
 
                     IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
                     configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
-
-                    string Intrinio_Api_Username = configRoot.GetSection("environmentVariables")["Intrinio_Api_Username"];
-                    string Intrinio_Api_Password = configRoot.GetSection("environmentVariables")["Intrinio_Api_Password"];
+                    string Api_Key = configRoot.GetSection("environmentVariables")["News_Api_Key"];
 
                     symbol = symbol.ToUpper();
 
                     try
                     {
-                        organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password));
+                        organization.News = JsonConvert.DeserializeObject<NewsApiOrg.Everything>(NewsApiOrg.Api.V2.Everything_Period(Api_Key, symbol, DateTime.Now.AddYears(-1), DateTime.Now));
                     }
                     catch { }
                     /*
@@ -105,15 +103,13 @@ namespace ProjectAbc.Controllers
 
                     IConfigurationRoot configRoot = Helper.ConfigurationHelper.GetConfiguration(Directory.GetCurrentDirectory());
                     configRoot.GetConnectionString(configRoot.GetSection("environmentVariables")["ENVIRONMENT"]);
-
-                    string Intrinio_Api_Username = configRoot.GetSection("environmentVariables")["Intrinio_Api_Username"];
-                    string Intrinio_Api_Password = configRoot.GetSection("environmentVariables")["Intrinio_Api_Password"];
+                    string Api_Key = configRoot.GetSection("environmentVariables")["News_Api_Key"];
 
                     symbol = symbol.ToUpper();
 
                     try
                     {
-                        organization.News = JsonConvert.DeserializeObject<Classes.Intrinio.CompanyNews>(Intrinio.WebApi.CompanyNews(symbol, Intrinio_Api_Username, Intrinio_Api_Password));
+                        organization.News = JsonConvert.DeserializeObject<NewsApiOrg.Everything>(NewsApiOrg.Api.V2.Everything_Period(Api_Key, symbol,DateTime.Now.AddYears(-1), DateTime.Now));
                     }
                     catch { }
                     /*

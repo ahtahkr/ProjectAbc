@@ -31,6 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="HelperProjects\GitHubApi\GitHubApi.csproj" />
     <ProjectReference Include="HelperProjects\Library\Library.csproj" />
+    <ProjectReference Include="HelperProjects\NewsApiOrg\NewsApiOrg.csproj" />
   </ItemGroup>
 
 </Project>
