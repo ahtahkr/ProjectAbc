@@ -1,0 +1,37 @@
+﻿@model NYTimes.TopStories
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h2>NYTimes - Top Stories</h2>
+        </div>
+        <div class="col-sm">
+            Powered By: <a href="http://developer.nytimes.com/" target="_blank" class="font-weight-bold">NYTimes</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="list-group list-group-flush">
+        @foreach (var item in Model.Results)
+        {
+        <div class="list-group-item container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    <img src="@item.Multimedia[0].Url" class="img-fluid" />
+                </div>
+                <div class="col-sm">
+                    <h6><a href="@item.Url" target="_blank">@item.Title</a></h6>
+                    <p class="text-justify font-weight-bold">@item.Abstract</p>
+                    <small>Published @item.Byline on @item.Published_date.ToShortDateString() @item.Published_date.ToShortTimeString()</small>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+

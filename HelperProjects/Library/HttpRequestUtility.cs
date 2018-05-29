@@ -35,5 +35,27 @@ namespace Library
 
             return response;
         }
+
+        public static string GetRequestApiKey(String uri, string apiKey)
+        {
+            HttpWebRequest GETRequest = (HttpWebRequest)WebRequest.Create(uri);
+            GETRequest.Method = "GET";
+            GETRequest.Headers.Add("api-key", apiKey);
+            
+            var httpWebResponse = (HttpWebResponse) GETRequest.GetResponse();
+            HttpStatusCode a = httpWebResponse.StatusCode;
+            var responseStream = httpWebResponse.GetResponseStream();
+            string response = "";
+            if (responseStream != null)
+            {
+                var streamReader = new StreamReader(responseStream);
+                //Console.WriteLine("HTTP Response is: ");
+                //Console.WriteLine(streamReader.ReadToEnd());
+                response += streamReader.ReadToEnd();
+            }
+            if (responseStream != null) { responseStream.Close(); }
+
+            return response;
+        }
     }
 }
