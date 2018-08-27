@@ -1,0 +1,49 @@
+﻿@model ContextualWeb.NewsSearch
+
+@{
+    ViewData["Title"] = "Get";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<script>
+    function Search_Keyword() {
+        var keyword = $("#searchKeyword").val();
+        if (keyword.length > 0) {
+            var getUrl = window.location;
+            var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + '/' + keyword;
+
+            window.location.href = baseUrl;
+        }
+    }
+</script>
+
+<div>
+    <form class="form-inline" action="#" onsubmit="Search_Keyword(); return false;">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" id="searchKeyword" placeholder="Search Keyword">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Get News</button>
+    </form>
+</div>
+
+<div>
+    <p>Total News Articles: @Model.TotalCount</p>
+</div>
+
+<div><ul class="list-group list-group-flush">
+    @{  var counter = 0;
+        foreach (var value in Model.Value)
+        {
+            ++counter;
+         <li class="list-group-item">
+             <div class="d-flex w-100 justify-content-between">
+                 <h5 class="mb-1"><a href="@value.Url" target="_blank">@counter. @value.Title</a></h5>
+                 <small><b>@value.DatePublished.ToLongDateString()  @value.DatePublished.ToShortTimeString()</b></small>
+             </div>
+             <p class="mb-1">@value.Description</p>
+             <small>Provider: @value.Provider.Name</small>
+         </li>    
+            }
+        }
+</ul>
+</div>

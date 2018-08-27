@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="HelperProjects\ContextualWeb\ContextualWeb.csproj" />
     <ProjectReference Include="HelperProjects\GitHubApi\GitHubApi.csproj" />
     <ProjectReference Include="HelperProjects\Library\Library.csproj" />
     <ProjectReference Include="HelperProjects\NewsApiOrg\NewsApiOrg.csproj" />
