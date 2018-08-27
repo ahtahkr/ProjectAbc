@@ -20,9 +20,12 @@
         {
         <div class="list-group-item container-fluid">
             <div class="row">
+                @if (item.Multimedia.Count > 0)
+                {
                 <div class="col-sm-2">
                     <img src="@item.Multimedia[0].Url" class="img-fluid" />
                 </div>
+                }
                 <div class="col-sm">
                     <h6><a href="@item.Url" target="_blank">@item.Title</a></h6>
                     <p class="text-justify font-weight-bold">@item.Abstract</p>
