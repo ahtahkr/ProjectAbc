@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitHubApi", "HelperProjects
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsApiOrg", "HelperProjects\NewsApiOrg\NewsApiOrg.csproj", "{388040F0-810A-4822-95DA-63B712EF839E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NYTimes", "HelperProjects\NYTimes\NYTimes.csproj", "{43FB2630-CB89-4EBC-B51B-363726D2853A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NYTimes", "HelperProjects\NYTimes\NYTimes.csproj", "{43FB2630-CB89-4EBC-B51B-363726D2853A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextualWeb", "HelperProjects\ContextualWeb\ContextualWeb.csproj", "{7B3919A5-50DB-41DF-B633-CD40199551A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
