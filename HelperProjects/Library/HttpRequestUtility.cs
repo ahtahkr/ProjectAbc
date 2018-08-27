@@ -8,7 +8,7 @@ namespace Library
 {
     public static class HttpRequestUtility
     {
-        public static string GetRequest(String uri, string username = "", string password = "")
+        public static string GetRequest(String uri, string username = "", string password = "", Dictionary<string, string> headers = null)
         {
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
             httpWebRequest.Method = "GET";
@@ -18,6 +18,14 @@ namespace Library
             if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
             {
                 httpWebRequest.Credentials = new NetworkCredential(username, password);
+            }
+
+            if (headers != null && headers.Count > 0)
+            {
+                foreach (KeyValuePair<string, string> pair in headers)
+                {
+                    httpWebRequest.Headers[pair.Key.ToString()] = pair.Value.ToString();
+                }
             }
 
             var httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
